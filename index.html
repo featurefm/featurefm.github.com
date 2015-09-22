@@ -1,962 +1,483 @@
 
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+              <meta name="title" content="Feature.fm&#x27;s music promotion blog" />
+      <meta name="description" content="Music promotion for the modern musician" />
+      <meta property="og:title" content="Feature.fm&#x27;s music promotion blog" />
+      <meta property="og:description" content="Music promotion for the modern musician" />
+      <meta property="og:image" content="http://www.feature.fm/blog/content/images/2015/09/BG-_0000_welcome.jpg" />
+      <meta name="keywords" content="music promotion, music publicity, band promotion, get your song played, promote your music, get on the radio, get played on the radio, music distribution, record labels, radio airplay, music marketing, music demo, music distributors, music promotions, promote music, submit music, band promotion, band publicity" />
 
-    <!-- Always force latest IE rendering engine or request Chrome Frame -->
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-    <!-- Use title if it's in the page YAML frontmatter -->
-    <title>Feature.fm Partners API</title>
+        <title>Feature.fm - Music Promotion in Streaming Services</title>
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="javascripts/all.js" type="text/javascript"></script>
+        <script src="//use.typekit.net/ivq1fhv.js"></script>
+        <script>try{Typekit.load();}catch(e){}</script>
 
-    <script>
-      $(function() {
-        var toc = $("#toc").tocify({
-          selectors: "h1,h2",
-          extendPage: false,
-          theme: "none",
-          smoothScroll: false,
-          showEffectSpeed: 0,
-          hideEffectSpeed: 180,
-          ignoreSelector: ".toc-ignore",
-          hashGenerator: 'pretty',
-          highlightOffset: 60,
-          scrollTo: -2,
-          scrollHistory: true,
-          hashGenerator: function(text, element) {
-            return element[0].getAttribute('id');
-          }
-        }).data("toc-tocify");
-        // Hack to make already open sections to start opened,
-        // instead of displaying an ugly animation
-        setTimeout(function() {
-          toc.setOption("showEffectSpeed", 180);
-        },50);
-        setupLanguages([
-          
-            
-              
-                'shell',
-              
-            
-          
-        ]);
-      });
-    </script>
-  </head>
+        <!-- apple touh icon -->
+        <link rel="shortcut icon" href="http://www.feature.fm/blog/assets/images/favicon.ico?v=a4a165a155">
+        <link rel="apple-touch-icon" sizes="114×114" href="http://www.feature.fm/blog/assets/images/touch-icon-114x114.png?v=a4a165a155" />
+        <link rel="apple-touch-icon" sizes="72×72" href="http://www.feature.fm/blog/assets/images/touch-icon-72x72.png?v=a4a165a155" />
+        <link rel="apple-touch-icon" href="http://www.feature.fm/blog/assets/images/touch-icon-57x57.png?v=a4a165a155" />
 
-  <body class="index">
-    <div class="tocify-wrapper">
-      <a href="/index.html"><img src="images/logo.png" /></a>
-      <div style="position:absolute; top:48px;right:20px;color:#dddddd;">Partners API</div>
-      <div class="toc-footer"></div>
-      <div id="toc">
-      </div>
-      
-      <ul class="toc-footer">
-        
-          <li><a target="_blank" href='https://www.feature.fm/index_publishers'>Sign Up for a Developer Key</a></li>
-        
-        
+        <link rel="stylesheet" href="http://www.feature.fm/blog/assets/css/normalize.css">
+        <link rel="stylesheet" href="http://www.feature.fm/blog/assets/font-awesome/css/font-awesome.min.css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+        <link rel="stylesheet" href="http://www.feature.fm/blog/assets/css/jasny-bootstrap.min.css">
+        <link rel="stylesheet" href="http://www.feature.fm/blog/assets/css/main.css">
+        <script src="http://www.feature.fm/blog/assets/js/vendor/modernizr-2.6.2.min.js"></script>
+
+        <link rel="canonical" href="http://www.feature.fm/blog/home/" />
+    <meta name="generator" content="Ghost 0.6" />
+    <link rel="alternate" type="application/rss+xml" title="Feature.fm&#x27;s music promotion blog" href="http://www.feature.fm/blog/rss/" />
+    </head>
+    <body class="post-template page-template page page-home page-template-home">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="wrapper">
+
+<!-- Fixed navbar -->
+    <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-right offcanvas" role="navigation">
+      <ul class="nav nav-pills nav-stacked">
+        <li role="presentation"><a href="https://www.feature.fm/artists/register/usertype">Sign Up</a></li>
+        <li role="presentation"><a href="https://www.feature.fm/artists/login">Login</a></li>
+        <hr/>
+        <li role="presentation"><a href="/about">About</a></li>
+        <li role="presentation"><a href="/pricing">Pricing</a></li>
+        <li role="presentation"><a href="https://featurefm.zendesk.com/hc/en-us">FAQ</a></li>
+        <li role="presentation"><a href="/blog">Blog</a></li>
+        <li role="presentation"><a  href="https://www.feature.fm/artists/register/usertype" type="button" class="getstarted-header btn btn-primary btn-lg">Get Started!</a></li>
       </ul>
-      
-    </div>
-    <div class="page-wrapper">
-      <div class="content">
-        <h1 id="introduction">Introduction</h1>
-
-<p>Welcome! You can use Feature.fm’s API to access our inventory of promoted songs.</p>
-
-<p>Our API will power your mobile app and website with high quality music while simultaneously providing you with the opportunity to monetize your air-play in a smarter, modern way.</p>
-
-<h2 id="about-the-api">About the API</h2>
-
-<p>The Feature.fm API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and use JSON response to indicate if the call was successful or not.</p>
-
-<p>We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients. We also support cross-origin resource sharing to allow you to interact securely with our API from a client-side web application.</p>
-
-<p>JSON will be returned in all responses from the API, including errors.</p>
-
-<p><strong>We hope you enjoy using our API the same way we enjoyed building it for you!</strong></p>
-
-<h1 id="obtaining-api-key">Obtaining API Key</h1>
-
-<h3 id="signing-up-as-a-publisher">Signing up as a publisher</h3>
-
-<p>In order to be able to use the API you must have a valid API key. To obtain one please contact bizdev@feature.fm or sign up to our publishers platform.</p>
-
-<p>It typically takes 2-3 days to approve an API key. Please feel free to send us a note if you want us to review it faster.</p>
-
-<h3 id="creating-a-feature.fm-app">Creating a Feature.fm app</h3>
-
-<p>The first step of using our API is to obtain an API key. It’s a very simple step that should not take more than two minutes. To Obtain the API key please perform the following:</p>
-
-<ol>
-<li>Login to the Feature.fm publisher Dashboard</li>
-<li>Click the APPS tab in the header menu</li>
-<li>Click &ldquo;Add New App&rdquo; button</li>
-<li>Choose The App Type you need, fill the app details and press &ldquo;Save & Generate Key&rdquo;</li>
-</ol>
-
-<p><aside class="notice">
-Yay! - You now have an API key and you can start using the Feature.fm API.
-</aside></p>
-
-<p>If you have multiple apps or website it is best to create a separate app for each one. Our dashboard will provide general revenues overview for all applications and more detailed reports for each application, which makes it easy to understand which app performs the best and optimize the integration.</p>
-
-<h1 id="key-concepts">Key Concepts</h1>
-
-<h2 id="feature.fm-partners">Feature.fm Partners</h2>
-
-<h3 id="who-is-eligible-to-become-a-feature.fm-certified-partner?">WHO IS ELIGIBLE TO BECOME A FEATURE.FM CERTIFIED PARTNER?</h3>
-
-<p>Do you have a music app, music blog or music related website? Do you share our passion in helping artists promote their music? Are you tired of clogging your service with ads and want to use high quality content in conjunction with a monetization solution instead?</p>
-
-<p><strong>If you answered yes, Feature.fm is for you.</strong></p>
-
-<h3 id="why-should-i-join-the-feature.fm-partners-program?">Why should I join the Feature.fm Partners program?</h3>
-
-<p>Feature.fm is an excellent solution for publishers that are looking to monetize their music website/applications without using traditional ads that intrude on their content, increase churn, and disrupt the user experience.</p>
-
-<p>Feature.fm is a music promotional platform that powers music services, websites and apps with great music content while allowing them to effectively monetize.</p>
-
-<p>Additionally, our partners also get a dashboard! Our publishers have access to detailed reports on their revenues and are able to cash out the money anytime with the touch of a button.</p>
-
-<h2 id="feature.fm-customers">Feature.fm Customers</h2>
-
-<p>Feature.fm’s main customers are the artists, music labels and music promoters. They are the reason we built Feature.fm and our goal is to help them effectively promote music in the digital streaming age.</p>
-
-<p>Feature.fm was build with the customer in mind, and we put an extensive effort in building a platform that would make it seamless for our customers to enjoy increased exposure in the music apps where their fans are listening.</p>
-
-<h3 id="so-how-does-it-work?">So how does it work?</h3>
-
-<p>Artists who want to promote their music on Feature.fm’s network may create a campaign using Feature.fm’s Advertiser Dashboard. This is done by simply uploading a song to Feature.fm, specifying the target audience, and sending the campaign for approval.</p>
-
-<p>Once the campaign has been approved, it will be served to our partners apps and websites.</p>
-
-<h3 id="what-targeting-does-feature.fm-support?">What targeting does Feature.fm support?</h3>
-
-<p>Feature.fm supports many targeting options, including playing a song to consumers who:
-<ol>
-<li>Listen to specific music genres</li>
-<li>Like specific artists</li>
-<li>Are located in a specific city or country</li>
-<li>Are distinguished by gender &amp; age</li>
-</ol></p>
-
-<h3 id="how-does-the-budget-work?">How does the budget work?</h3>
-
-<p>As part of the campaign creation process, the artist sets a budget for the campaign. The artist has complete control on his/her spending by specifying a daily budget, maximum budget, and maximum bid.</p>
-
-<p>The campaign that will eventually get played is the campaign that is relevant to a specific consumer and has the highest bid attached to it.</p>
-
-<h3 id="how-does-the-artist-monitor-campaign-performance?">How does the artist monitor campaign performance?</h3>
-
-<p>The artist receives access to a powerful dashboard with information about the performance of each campaign and the subsequent user interaction (plays, skips, vote up, share, tweet, and more).</p>
-
-<p>Music services that are part of the Feature.fm network sends events that inform us on what happened when the song was played as part of a campaign.</p>
-
-<p>These events, in real-time, are displayed to the customer in an impressive dashboard, helping the customer better understand the performance of the campaign so he/she may optimize it.</p>
-
-<h1 id="best-practices-to-consider">Best Practices To Consider</h1>
-
-<p>There are many unique ways to integrate Feature.fm. Every app has specific needs and distinct standards for user experience. We have outlined some of our best practices for integrating that will work very well for both artists and music streaming services.</p>
-
-<p>All of the examples listed in this section are targeted towards mobile platforms. However, they are applicable to web, tablet, tv, or any other streaming platform.
-<aside class="notice">
-Remember - The goal is to help artists gain exposure. Integrating the promoted song in a prominent location will dramatically increase the benefits the artist gets.
-</aside></p>
-
-<h2 id="in-stream-song-promotion">In-Stream Song Promotion</h2>
-
-<p><img alt="In-Stream Integration Example" class="right" src="images/in_stream.png"/>
-In-Stream integration involves automatically playing a featured song after every X number of songs. This should be used to help an artist gain exposure to new listeners the same way the “old” radio does but in a smarter,modern way.</p>
-
-<h3 id="what-are-the-benefits?">What are the benefits?</h3>
-
-<ol>
-<li>It is a great discovery feature for the end user</li>
-<li>It is a great way for music streaming services to monetize their airplay without disrupting the user experience with traditional advertisements.</li>
-<li>It does not require a user action such as a click, swipe, etc. to enjoy this revenue stream.</li>
-</ol>
-
-<p>In this example we see a promoted song being played in an example music app. The song is marked as promoted content and the user may add it to a playlist, like it, share it, etc. It is the best practice to use a promoted song as if it were any other song in the hosting music service.</p>
-
-<h2 id="in-search-song-promotion">In-Search Song Promotion</h2>
-
-<p><img alt="In-Search Integration Example" class="right" src="images/in_search.png"/>
-In-Search integration involves displaying a featured song as part of the search results and can be compared to Google’s sponsored search results.</p>
-
-<p>In one scenario, this can be used to help artists gain exposure during the user’s creation of a playlist by allowing him/her to participate in more and more playlists. It is also an excellent way for music streaming services to monetize their search results with high quality music content.</p>
-
-<p>In this example we see three promoted songs being displayed as part of the search results in an example music app. The songs are marked as a promoted content and the user can add the song to playlist, like it, share it, etc. It is the best practice to use a promoted song as if it were any other song in the hosting music service.</p>
-
-<h2 id="in-discovery-song-promotion">In-Discovery Song Promotion</h2>
-
-<p><img alt="In-Discovery Integration Example" class="right" src="images/in_discovery.png"/>
-In-Discovery Song Promotion is to display a featured song in discovery sections in the music streaming services, blog and websites.</p>
-
-<h3 id="discovery-sections-may-include:">Discovery sections may include:</h3>
-
-<ol>
-<li>Music News Feed</li>
-<li>Popular Songs</li>
-<li>Music Charts</li>
-<li>Music News</li>
-<li>Any Browsable Section</li>
-</ol>
-
-<p>This should be used to help artists gain exposure in front of users who want to discover new music. It is also great way for music streaming services to monetize their discovery screens without disturbing the user experience.</p>
-
-<p>In this example we see a promoted song being displayed in an example music app. The song is being displayed with a mark indicating it is a promoted song. The user may add the song to a playlist, like it, share it, etc. It is the best practice to use a promoted song as if it were any other song in the hosting music service.</p>
-
-<h1 id="consumers">Consumers</h1>
-
-<h2 id="who-is-a-consumer?">Who is a Consumer?</h2>
-
-<p>We define consumers as our partners&#39; end users who are using their platforms to listen to and discover music.</p>
-
-<p><aside class="notice">
-To be able to request promoted songs, the first step should be to call the identify endpoint in order to uniquely identify the customer.
-</aside></p>
-
-<h2 id="identify">Identify</h2>
-
-<p>This endpoint should be used to identify the end consumer. This request <strong>should be called from the <u>client</u></strong>.</p>
-
-<p>In order to operate efficiently, Feature.fm requires a unique identifier for each user who receives a promoted song. This allows Feature.fm to avoid playing the same song to the same user multiple times and also to make better song recommendations based on the user&rsquo;s activity.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-<pre class="highlight shell">curl <span class="s2">"https://api.feature.fm/consumer/identify?api_key={api_key}"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"consumer_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SFSD23-2342f-sfdsf4-243rfs-4jghj"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></pre>
-
-<p><code class="prettyprint">POST /consumer/identify</code></p>
-
-<h3 id="post-parameters">POST Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>true</td>
-<td>In order to work with our API you must create an application in our Publisher’s dashboard. Every app has a unique API key that must be sent with all calls to the API.</td>
-</tr>
-<tr>
-<td>consumer_id</td>
-<td>false</td>
-<td>Unique id of the user inside the application/website. This will allow feature.fm to choose campaigns more wisely for the user.</td>
-</tr>
-<tr>
-<td>gender</td>
-<td>false</td>
-<td>Valid values: &ldquo;male&rdquo;  or &ldquo;female&rdquo;</td>
-</tr>
-<tr>
-<td>year_of_birth</td>
-<td>false</td>
-<td>Valid year (YYYY)</td>
-</tr>
-</tbody></table>
-
-<p><aside class="notice">
-Important — The consumer_token returned by this endpoint must be retained to issue further requests.
-</aside></p>
-
-<h1 id="campaigns">Campaigns</h1>
-
-<h2 id="get-featured-song">Get Featured Song</h2>
-
-<p>The endpoint will return a campaign to be played according to consumer and targeting parameters. Each request will generate a thread with a unique ID that should be used when conducting additional operations such as playing the song, sending events, etc.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-<pre class="highlight shell">curl <span class="s2">"https://api.feature.fm/featured/song?for={purpose}api_key={api_key}"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"song"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"genres"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"5335bc3bd40ece90e2000002"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lior"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">232</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"albumart_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev.feature.fm:9540/images/46f9ee4d4ba5bbd4365c967bdf2c171e.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sample_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://api.dev.feature.fm:9540/sample/f93291f2d5cd6c46f117e5c8a52acf5e"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"buy_song_url"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"artist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lior"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev.feature.fm:9540/images/04336c6b5f3a01b7ca7a0428543406cd.jpg"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"facebook_page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.facebook.com/ListnPlay"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"twitter_page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twitter.com/featurefm"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the bio of the artist. This information is provided by the artists itself or by his promoter/label"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"stream_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev.feature.fm:9540/play/5339a443ddfb9f0000000009"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"event_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://api.dev.feature.fm:9540/event/5339a443ddfb9f0000000009"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"youtube_url"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"share_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev.feature.fm:9540/share/5339a443ddfb9f0000000009"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"report_external_play_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://api.dev.feature.fm:9540/reportExternalPlay/5339a443ddfb9f0000000009"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></pre>
-
-<p><code class="prettyprint">POST /featured/song</code></p>
-
-<h3 id="post-parameters">POST Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>true</td>
-<td>In order to work with our API you must create an application in our Publisher’s dashboard. Every app has a unique API key that must be sent with all calls to the API.</td>
-</tr>
-<tr>
-<td>for</td>
-<td>true</td>
-<td>‘display’ – To be used for rendering song information. ‘play’ - To be used when song is intended for auto-play.</td>
-</tr>
-<tr>
-<td>num_campaigns</td>
-<td>false</td>
-<td>Number of campaigns to return. Valid values are 1,2, or 3.</td>
-</tr>
-<tr>
-<td>placement</td>
-<td>false</td>
-<td>Placement parameter may be used to get more detailed reports about the performance of a specific widget in specific location.</td>
-</tr>
-<tr>
-<td>campaign_id</td>
-<td>false</td>
-<td>Valid campaign ID (UDID).</td>
-</tr>
-<tr>
-<td>consumer_token</td>
-<td>true</td>
-<td>Valid consumer token.</td>
-</tr>
-<tr>
-<td>genres</td>
-<td>false</td>
-<td>Allows the service to provide some information about the user’s context. For example: if he’s listening to Rock radio or likes Folk music, etc. Feature.fm will make sure that the user will get featured songs in the same context.</td>
-</tr>
-</tbody></table>
-
-<p><aside class="notice">
-Each featured song in the response contains links to additional endpoints.
-Examples: stream_url is the endpoint for streaming the song.
-share_url is the endpoint that may be used to share the song    outside the website/application such as in social networks, etc.</aside></p>
-
-<h1 id="campaign-events">Campaign Events</h1>
-
-<p>Feature.fm is a music promotion network, as such, we are obligated to providing our customers data and statistics regarding their campaigns.</p>
-
-<h3 id="feature.fm-supported-events">Feature.fm Supported Events</h3>
-
-<ol>
-<li>Song Skip - Notifying Feature.fm platform when the consumer skips a featured song</li>
-<li>Song Vote-Up</li>
-<li>Song Vote-Down</li>
-<li>Facebook - Like Featured Song</li>
-<li>Facebook - Like Artist Facebook Page</li>
-<li>Twitter - Follow Artist</li>
-<li>Twitter - Tweet Featured Song</li>
-</ol>
-
-<p>To be able to do that in efficient way and in real-time we kindly ask our partners to send us the relevant events specified in the Campaign Events section.</p>
-
-<p><strong>Please Note:</strong> The Skip event is mandatory and required to be sent when a featured song is being skipped.</p>
-
-<p><aside class="notice">
-<strong>Important:</strong> The base URL to report events should be taken from event_url field in &ldquo;Get Featured Song&rdquo; endpoint response
-</aside></p>
-
-<h2 id="skip">Skip</h2>
-
-<p>This endpoint should be used to report a skip event of a featured song. It is mandatory to report back if the user has skipped the song and at which position during the song, as this data is very valuable to the artists and will be displayed on their campaign dashboard.</p>
-<pre class="highlight shell">curl <span class="s2">"https://api.feature.fm/{thread_id}/skip"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<blockquote>
-<p>On error the status will be &lt;&gt; 0 and message will provide more details about the error:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid parameter: seconds_played"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<p><code class="prettyprint">POST {event_url}/skip</code></p>
-
-<h3 id="post-parameters">POST Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>true</td>
-<td>In order to work with our API you must create an application in our Publisher’s dashboard. Every app has a unique API key that must be sent with all calls to the API.</td>
-</tr>
-<tr>
-<td>seconds_played</td>
-<td>true</td>
-<td>The number of seconds the song was played before the user skipped the song.</td>
-</tr>
-<tr>
-<td>consumer_token</td>
-<td>true</td>
-<td>Valid consumer token.</td>
-</tr>
-</tbody></table>
-
-<h2 id="vote-up">Vote Up</h2>
-
-<p>This endpoint should be used to report a vote up event of a featured song. It is mandatory to report back if the user has voted up the song and at which position during the song, as this data is very valuable to the artists and will be displayed on their campaign dashboard.</p>
-<pre class="highlight shell">curl <span class="s2">"https://api.feature.fm/{thread_id}/voteup"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<blockquote>
-<p>On error the status will be &lt;&gt; 0 and message will provide more details about the error:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid parameter: seconds_played"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<p><code class="prettyprint">POST {event_url}/voteup</code></p>
-
-<h3 id="post-parameters">POST Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>true</td>
-<td>In order to work with our API you must create an application in our Publisher’s dashboard. Every app has a unique API key that must be sent with all calls to the API.</td>
-</tr>
-<tr>
-<td>seconds_played</td>
-<td>false</td>
-<td>The number of seconds the song was played before the event occurred. Specify (-1) if seconds_played is unknown.</td>
-</tr>
-<tr>
-<td>consumer_token</td>
-<td>true</td>
-<td>Valid consumer token.</td>
-</tr>
-</tbody></table>
-
-<h2 id="vote-down">Vote Down</h2>
-
-<p>This endpoint should be used to report a vote down event of a featured song. It is mandatory to report back if the user has voted down the song and at which position during the song, as this data is very valuable to the artists and will be displayed on their campaign dashboard.</p>
-<pre class="highlight shell">curl <span class="s2">"https://api.feature.fm/{thread_id}/voteup"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<blockquote>
-<p>On error the status will be &lt;&gt; 0 and message will provide more details about the error:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid parameter: seconds_played"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<p><code class="prettyprint">POST {event_url}/votedown</code></p>
-
-<h3 id="post-parameters">POST Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>true</td>
-<td>In order to work with our API you must create an application in our Publisher’s dashboard. Every app has a unique API key that must be sent with all calls to the API.</td>
-</tr>
-<tr>
-<td>seconds_played</td>
-<td>false</td>
-<td>The number of seconds the song was played before the event occurred. Specify (-1) if seconds_played is unknown.</td>
-</tr>
-<tr>
-<td>consumer_token</td>
-<td>true</td>
-<td>Valid consumer token.</td>
-</tr>
-</tbody></table>
-
-<h2 id="favorite">Favorite</h2>
-
-<p>This endpoint should be used to report a favorite event of a featured song. It is mandatory to report back if the user has favorited the song and at which position during the song, as this data is very valuable to the artists and will be displayed on their campaign dashboard.</p>
-<pre class="highlight shell">curl <span class="s2">"https://api.feature.fm/{thread_id}/favorite"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<blockquote>
-<p>On error the status will be &lt;&gt; 0 and message will provide more details about the error:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid parameter: seconds_played"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<p><code class="prettyprint">POST {event_url}/favorite</code></p>
-
-<h3 id="post-parameters">POST Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>true</td>
-<td>In order to work with our API you must create an application in our Publisher’s dashboard. Every app has a unique API key that must be sent with all calls to the API.</td>
-</tr>
-<tr>
-<td>seconds_played</td>
-<td>false</td>
-<td>The number of seconds the song was played before the event occurred. Specify (-1) if seconds_played is unknown.</td>
-</tr>
-<tr>
-<td>consumer_token</td>
-<td>true</td>
-<td>Valid consumer token.</td>
-</tr>
-</tbody></table>
-
-<h2 id="facebook-like---featured-song">Facebook Like - Featured Song</h2>
-
-<p>This endpoint should be used to report a Facebook like event of a featured song. It is mandatory to report back if the user has liked the song and at which position during the song, as this data is very valuable to the artists and will be displayed on their campaign dashboard.</p>
-<pre class="highlight shell">curl <span class="s2">"https://api.feature.fm/{thread_id}/song_fb_like"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<blockquote>
-<p>On error the status will be &lt;&gt; 0 and message will provide more details about the error:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid parameter: seconds_played"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<p><code class="prettyprint">POST {event_url}/song_fb_like</code></p>
-
-<h3 id="post-parameters">POST Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>true</td>
-<td>In order to work with our API you must create an application in our Publisher’s dashboard. Every app has a unique API key that must be sent with all calls to the API.</td>
-</tr>
-<tr>
-<td>seconds_played</td>
-<td>false</td>
-<td>The number of seconds the song was played before the event occurred. Specify (-1) if seconds_played is unknown.</td>
-</tr>
-<tr>
-<td>consumer_token</td>
-<td>true</td>
-<td>Valid consumer token.</td>
-</tr>
-</tbody></table>
-
-<h2 id="facebook-like---artist-page">Facebook Like - Artist Page</h2>
-
-<p>This endpoint should be used to report a Facebook artist page like event as a result of playing a featured song. It is mandatory to report back if the user has liked the artist and at which position during the song, as this data is very valuable to the artists and will be displayed on their campaign dashboard.</p>
-<pre class="highlight shell">curl <span class="s2">"https://api.feature.fm/{thread_id}/artist_fb_like"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<blockquote>
-<p>On error the status will be &lt;&gt; 0 and message will provide more details about the error:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid parameter: seconds_played"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<p><code class="prettyprint">POST {event_url}/artist_fb_like</code></p>
-
-<h3 id="post-parameters">POST Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>true</td>
-<td>In order to work with our API you must create an application in our Publisher’s dashboard. Every app has a unique API key that must be sent with all calls to the API.</td>
-</tr>
-<tr>
-<td>seconds_played</td>
-<td>false</td>
-<td>The number of seconds the song was played before the event occurred. Specify (-1) if seconds_played is unknown.</td>
-</tr>
-<tr>
-<td>consumer_token</td>
-<td>true</td>
-<td>Valid consumer token.</td>
-</tr>
-</tbody></table>
-
-<h2 id="twitter---tweet">Twitter - Tweet</h2>
-
-<p>This endpoint should be used to report a tweet event as a result of playing a featured song. It is mandatory to report back if the user has tweeted the song and at which position during the song, as this data is very valuable to the artists and will be displayed on their campaign dashboard.</p>
-<pre class="highlight shell">curl <span class="s2">"https://api.feature.fm/{thread_id}/tweet"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<blockquote>
-<p>On error the status will be &lt;&gt; 0 and message will provide more details about the error:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid parameter: seconds_played"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<p><code class="prettyprint">POST {event_url}/tweet</code></p>
-
-<h3 id="post-parameters">POST Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>true</td>
-<td>In order to work with our API you must create an application in our Publisher’s dashboard. Every app has a unique API key that must be sent with all calls to the API.</td>
-</tr>
-<tr>
-<td>seconds_played</td>
-<td>false</td>
-<td>The number of seconds the song was played before the event occurred. Specify (-1) if seconds_played is unknown.</td>
-</tr>
-<tr>
-<td>consumer_token</td>
-<td>true</td>
-<td>Valid consumer token.</td>
-</tr>
-</tbody></table>
-
-<h2 id="twitter---follow">Twitter - Follow</h2>
-
-<p>This endpoint should be used to report a follow artist on twitter event as a result of playing a featured song. It is mandatory to report back if the user has followed the artist on twitter and at which position during the song, as this data is very valuable to the artists and will be displayed on their campaign dashboard.</p>
-<pre class="highlight shell">curl <span class="s2">"https://api.feature.fm/{thread_id}/twtr_follow"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<blockquote>
-<p>On error the status will be &lt;&gt; 0 and message will provide more details about the error:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid parameter: seconds_played"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<p><code class="prettyprint">POST {event_url}/twtr_follow</code></p>
-
-<h3 id="post-parameters">POST Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>true</td>
-<td>In order to work with our API you must create an application in our Publisher’s dashboard. Every app has a unique API key that must be sent with all calls to the API.</td>
-</tr>
-<tr>
-<td>seconds_played</td>
-<td>false</td>
-<td>The number of seconds the song was played before the event occurred. Specify (-1) if seconds_played is unknown.</td>
-</tr>
-<tr>
-<td>consumer_token</td>
-<td>true</td>
-<td>Valid consumer token.</td>
-</tr>
-</tbody></table>
-
-<h2 id="added-to-playlist">Added To Playlist</h2>
-
-<p>This endpoint should be used to report an add to playlist event as a result of playing a featured song. It is mandatory to report back if the user has added the song to a playlist and at which position during the song, as this data is very valuable to the artists and will be displayed on their campaign dashboard.</p>
-<pre class="highlight shell">curl <span class="s2">"https://api.feature.fm/{thread_id}/added_to_playlist"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<blockquote>
-<p>On error the status will be &lt;&gt; 0 and message will provide more details about the error:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid parameter: seconds_played"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<p><code class="prettyprint">POST {event_url}/added_to_playlist</code></p>
-
-<h3 id="post-parameters">POST Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>true</td>
-<td>In order to work with our API you must create an application in our Publisher’s dashboard. Every app has a unique API key that must be sent with all calls to the API.</td>
-</tr>
-<tr>
-<td>seconds_played</td>
-<td>false</td>
-<td>The number of seconds the song was played before the event occurred. Specify (-1) if seconds_played is unknown.</td>
-</tr>
-<tr>
-<td>playlist_name</td>
-<td>true</td>
-<td>The name of the playlist the song was added to.</td>
-</tr>
-<tr>
-<td>consumer_token</td>
-<td>true</td>
-<td>Valid consumer token.</td>
-</tr>
-</tbody></table>
-
-<h1 id="errors">Errors</h1>
-
-<p>The Feature.fm API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The object requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified object could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a object with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The object requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many objects! Slown down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
-</tr>
-</tbody></table>
-
+    </nav>
+    <nav class="navbar getstarted navbar-default navbar-fixed-top">
+      <div class="container" style="width: 100%;padding-left: 30px;padding-right: 30px;">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand full-logo" href="/">
+            <img src="http://www.feature.fm/blog/content/images/2015/09/ffm_logo-2x.png" alt="Logo">
+          </a>
+          <a class="navbar-brand icon-logo" href="/">
+            <img src="http://www.feature.fm/blog/assets/images/feature_fm_no_text_logo.png" height="30px" alt="Logo">
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="https://featurefm.zendesk.com/hc/en-us">FAQ</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li class="divider-vertical "></li>
+            <li><a href="/artists/login">Login</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+        <a  href="https://www.feature.fm/artists/register/usertype" type="button" class="hidden-sm hidden-xs getstarted-header btn btn-primary btn-lg">Get Started!</a>
       </div>
-      <div class="dark-box">
-        <div id="lang-selector">
-          
-            
-              
-                <a href="#" data-language-name="shell">shell</a>
-              
-            
-          
+    </nav>
+
+    <div class="container">
+    <div class="list-group navbar" id="sidebar">
+        <ul class="nav" id="mynav" data-offset-top="130">
+            <li><a href="#c1" class="list-group-item">
+              <div class="navicon"></div>
+                  Welcome
+                </a>
+            </li>
+            <li> <a href="#c2" class="list-group-item" contenteditable="false">
+              <div class="navicon"></div>
+              How it works
+                </a>
+            </li>
+            <li> <a href="#c3" class="list-group-item" contenteditable="false">
+              <div class="navicon"></div>
+              Benefits
+                </a>
+            </li>
+            <li> <a href="#c4" class="list-group-item" contenteditable="false">
+              <div class="navicon"></div>
+              Spotlight
+                </a>
+            </li>
+            <li> <a href="#c5" class="list-group-item" contenteditable="false">
+              <div class="navicon"></div>
+              Our mission
+                </a>
+            </li>
+            <li> <a href="#c6" class="list-group-item" contenteditable="false">
+              <div class="navicon"></div>
+              Get started
+                </a>
+            </li>
+        </ul>
+    </div>
+  </div>
+    <div data-spy="scroll" data-target=".sidenav" class="site-header" style="background-image: url(http://www.feature.fm/blog/content/images/2015/09/BG-_0000_welcome.jpg);">
+        <header class="container">
+            <div class="row">
+                <div id="c1" class="col-md-offset-2 col-md-8 col-sm-12 col-xs-12" style="display: table;">
+                  <div class="header-content">
+                    <h1 class="page-description ">You want your <br class="hidden-xs hidden-md hidden-lg"/>music heard.<br class="hidden-xs hidden-md hidden-lg"/> So do we.</h1>
+                    <h2 class="page-subdesc"><strong>Reach millions of listeners</strong> directly <br class="hidden-xs hidden-lg"/>inside streaming services</h2>
+                    <!--div class="row stats">
+                      <div class="col-md-4 col-sm-4 col-xs-6">
+                        <h1>10,231</h1>
+                        <span>Artists</span>
+                      </div>
+                      <div class="col-md-4 col-sm-4 col-xs-6">
+                        <h1>100,000</h1>
+                        <span>Song plays</span>
+                      </div>
+                    </div-->
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <a href="https://www.feature.fm/artists/register/usertype" type="button" class="getstarted btn btn-primary btn-lg btn-block">Get Started!</a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="scroll-to-next hidden-lg hidden-md">
+                          <a class="" href="#c2"><img class="svg down-arrow" src="http://www.feature.fm/blog/assets/images/svg/arrow_down.svg"/></a>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="container">
+      <div class="row section" id="c2">
+          <div class="section-image col-md-6 col-md-offset-2">
+            <img class="img-responsive" src="http://www.feature.fm/blog/assets/images/8tracksdemo.png"></img>
+          </div>
+          <div class="col-md-4">
+              <h1>How it works</h1>
+              <p>
+                <strong>feature.fm</strong> is an ad platform built exclusively for music. We play your songs to the right audience inside our <a target="_blank" href="https://featurefm.zendesk.com/hc/en-us/articles/205029517-Where-is-my-music-played-">streaming partners</a>.
+                <ul class="list-unstyled">
+                  <li>· &nbsp; Upload your song</li>
+                  <li>· &nbsp; Choose your target audience</li>
+                  <li>· &nbsp; <strong>Instantly get song plays</strong></li>
+                </ul>
+              </p>
+          </div>
+      </div>
+    </div>
+
+      <div class="row section" id="c3" style="background: url('http://www.feature.fm/blog/assets/images/benefitsbg.jpg')">
+        <div class="container">
+          <div class="col-md-10 col-md-offset-2 benefits darkbg">
+            <div class="col-md-4 col-sm-6">
+              <div class="col-md-12">
+                <h1>How <br/> you benefit</h1>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="col-md-12 benefit-button" data-toggle="modal" data-target="#myModal" onClick="javascript:goToSlide(0);">
+                <img class="svg" src="http://www.feature.fm/blog/assets/images/svg/additiontoplaylist.svg"/>
+                <h2>Reach fans and <br/><strong>get into playlists</strong></h2>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="col-md-12 benefit-button" data-toggle="modal" data-target="#myModal" onClick="javascript:goToSlide(1);">
+                <img class="svg" src="http://www.feature.fm/blog/assets/images/svg/earbuds.svg"/>
+                <h2>Understand your <strong>audience</strong></h2>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="col-md-12 benefit-button" data-toggle="modal" data-target="#myModal" onClick="javascript:goToSlide(2);">
+                <img class="svg" src="http://www.feature.fm/blog/assets/images/svg/identifysong.svg"/>
+                <h2>Identify your <strong>best performing</strong> songs</h2>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="col-md-12 benefit-button" data-toggle="modal" data-target="#myModal" onClick="javascript:goToSlide(3);">
+                <img class="svg" src="http://www.feature.fm/blog/assets/images/svg/payforresults.svg"/>
+                <h2>Only pay for <br/> <strong>results</strong></h2>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="col-md-12 benefit-button" data-toggle="modal" data-target="#myModal" onClick="javascript:goToSlide(4);">
+                <img class="svg" src="http://www.feature.fm/blog/assets/images/svg/fanfunding.svg"/>
+                <h2>Let your fans <strong>fund <br/>your song plays</strong>
+                  <div style="margin-top:7px; font-size: 14px;color: #999;font-weight:400;"><i>Coming soon...</i></div>
+                </h2>
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </div>
-    </div>
-  </body>
+
+    <div class="container">
+        <div class="row section" id="c4">
+            <div class="section-image col-md-6 col-md-offset-2">
+              <img class="img-responsive" src="http://www.feature.fm/blog/assets/images/spotlightdemo.png"></img>
+            </div>
+            <div class="col-md-4">
+                <h1>Be in the Spotlight</h1>
+                <p><i>Coming soon...</i></p>
+                <p>
+                  Spotlight is your beautifully designed, customizable space to showcase your music and bring your fans into your inner circle. <strong>It’s free when you sign up.</strong>
+                </p>
+                <p>
+                  Want more funding? No problem. <strong><br/>Fan-fund your song plays.</strong>
+                </p>
+            </div>
+        </div>
+      </div>
+      <div id="c5" class="row section whywedoit" style="background: url('http://www.feature.fm/blog/assets/images/whywedoitbg.jpg')">
+        <div class="container">
+          <div class="col-md-10 col-md-offset-2">
+            <h1>Music is our passion.<br class="hidden-xs"/> Your exposure is our mission.</h1>
+          </div>
+          <div class="col-md-8 col-md-offset-2">
+            <!--h1>Music is our passion. Your exposure is our mission.</h1>
+            <p><strong>Music is our passion. Getting you exposure is our mission.</strong></p-->
+            <!--p>
+              The best way to find fans is to play your music to them, but getting airplay is extremely challenging.
+            </p-->
+            <p>
+              We believe that every artist deserves to have their music heard by the right audience.  Your fans are out there and you just need the right tools to find them. <a href="/about">Learn more about us</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="c6" class="row section getstarted" style="background: url('http://www.feature.fm/blog/assets/images/getstartedbg.jpg')">
+        <div class="container">
+          <div class="col-md-10 col-md-offset-2 darkbg">
+            <h1>Get Started</h1>
+            <h2>Getting your songs heard has never been easier.</h2>
+            <div class="row">
+              <div class="col-md-3">
+                <img class="svg" src="http://www.feature.fm/blog/assets/images/getstarted/signup.svg"/>
+                <!--img class="svg arrow" src="http://www.feature.fm/blog/assets/images/getstarted/arrow.svg"/-->
+                <h4><span><strong>Sign</strong> up</span></h4>
+              </div>
+              <div class="col-md-3">
+                <img class="svg" src="http://www.feature.fm/blog/assets/images/getstarted/upload.svg"/>
+                <!--img class="svg arrow" src="http://www.feature.fm/blog/assets/images/getstarted/arrow.svg"/-->
+                <h4><strong>Upload</strong> your music</h4>
+              </div>
+              <!--div class="col-md-3">
+                <img class="svg" src="http://www.feature.fm/blog/assets/images/getstarted/share.svg"/>
+                <!--img class="svg arrow" src="http://www.feature.fm/blog/assets/images/getstarted/arrow.svg"/-->
+                <!--h4><strong>Share</strong> your spotlight page<br class="hidden-lg hidden-md"/> with friends</h4>
+              </div-->
+              <div class="col-md-3">
+                <img class="svg" src="http://www.feature.fm/blog/assets/images/getstarted/target.svg"/>
+                <!--img class="svg arrow" src="http://www.feature.fm/blog/assets/images/getstarted/arrow.svg"/-->
+                <h4><strong>Target</strong> your audience</h4>
+              </div>
+              <div class="col-md-3">
+                <img class="svg" src="http://www.feature.fm/blog/assets/images/getstarted/promote.svg"/>
+                <!--img class="svg arrow" src="http://www.feature.fm/blog/assets/images/getstarted/arrow.svg"/-->
+                <h4>Get your music <strong>heard</strong></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="background layer2"></div>
+            <div class="background layer3 "></div>
+            <div class="modal-body">
+              <img class="close" data-dismiss="modal" aria-label="Close" src="http://www.feature.fm/blog/assets/images/svg/button_close_modal.svg" alt="Close">
+
+              <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                <!-- Indicators -->
+                <!--ol class="carousel-indicators">
+                  <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel" data-slide-to="1"></li>
+                  <li data-target="#carousel" data-slide-to="2"></li>
+                  <li data-target="#carousel" data-slide-to="3"></li>
+                  <li data-target="#carousel" data-slide-to="4"></li>
+                </ol-->
+
+                <!-- Wrapper for slides -->
+                <div class="container">
+                <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                <div class="carousel-inner" role="listbox">
+                  <div class="item active">
+                    <div class="row">
+                      <img class="col-md-8 img-responsive" src="http://www.feature.fm/blog/assets/images/benefits/addedtoplaylists.png" alt="...">
+                      <div class="col-md-4">
+                        <h1>Reach new fans and get into playlists</h1>
+                        <p>Your song will stand out through a customizable luxury space that highlights you.</p>
+                        <p>Watch your song plays grow organically as your new fans add your songs to playlists, even after your campaign ends. Listeners you reach can interact with your song just like any other track inside of our streaming partners.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <img class="col-md-8 img-responsive" src="http://www.feature.fm/blog/assets/images/benefits/map.png" alt="...">
+                      <div class="col-md-4">
+                        <h1>Understand your audience</h1>
+                        <p>Understand the demographics of your fan-base like never before through real market insights into how people genuinely respond to your music. Make better decisions about how to strategically market to the right people and places.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <img class="col-md-8 img-responsive" src="http://www.feature.fm/blog/assets/images/benefits/analytics.png" alt="...">
+                      <div class="col-md-4">
+                        <h1>Identify <br class="hidden-xs"/>your best performing songs</h1>
+                        <p>Make sure you focus on promoting the right song. Learn which one of your songs people like the most. Look deeper into which sections of your song people engage with to help guide you as you create more music for your fans.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <img class="col-md-8 img-responsive" src="http://www.feature.fm/blog/assets/images/benefits/payforresults.png" alt="...">
+                      <div class="col-md-4">
+                        <h1>Only pay for results</h1>
+                        <p>You only pay if your song is heard for at least 30 seconds and your budget is completely up to you with no commitments.  Feature.fm is the most cost-effective way for you to get your music heard.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <img class="col-md-8 img-responsive" src="http://www.feature.fm/blog/assets/images/benefits/fanfunding.png" alt="...">
+                      <div class="col-md-4">
+                        <h1>Let your fans fund your song plays</h1>
+                        <p><i>Coming soon...</i></p>
+                        <p>You have loyal fans who want to support your music. feature.fm Spotlight is a place for you to showcase your music and bring your fans into your inner circle. Spotlight’s revolutionary fan-funding tool makes it the only place that allows your fans to fund your song plays in our streaming partners. </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control hidden-xs hideen-sm" href="#carousel" role="button" data-slide="prev">
+                  <img class="left-arrow" src="http://www.feature.fm/blog/assets/images/svg/arrow_left.svg"/>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control hidden-xs hideen-sm" href="#carousel" role="button" data-slide="next">
+                  <img class="right-arrow" src="http://www.feature.fm/blog/assets/images/svg/arrow_right.svg"/>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!-- start footer -->
+        <div class="footer-container">
+            <footer class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4 class="footer-title">feature.fm</h4>
+
+                        <ul class="list-unstyled">
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/pricing">Pricing</a></li>
+                            <li><a target="blank" href="https://featurefm.zendesk.com/hc/en-us/articles/204335308-How-does-feature-fm-work-">How does it work?</a></li>
+                            <li><a href="/artists/register/usertype">Get your music played</a></li>
+                            <li><a target="blank" href="https://featurefm.zendesk.com/hc/en-us/articles/210137298">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="footer-title">Help</h4>
+                        <ul class="list-unstyled">
+                            <li><a target="blank" href="https://featurefm.zendesk.com/hc/en-us">FAQ</a></li>
+                            <li><a target="blank" href="https://featurefm.zendesk.com/hc/en-us">Help Center</a></li>
+                            <li><a target="blank" href="https://featurefm.zendesk.com/hc/en-us/articles/209558908-Terms-of-Use">Terms of Use</a></li>
+                            <li><a target="blank" href="https://featurefm.zendesk.com/hc/en-us/articles/209558828-Privacy-Policy">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="footer-title">Connnect with us</h4>
+                        <ul class="list-unstyled">
+                            <li><a target="blank" href="/blog">Blog</a></li>
+                            <li><a target="blank" href="https://www.facebook.com/Featurefm-497931363607317/timeline/">Facebook</a></li>
+                            <li><a target="blank" href="https://twitter.com/Featurefm">Twitter</a></li>
+                            <li><a target="blank" href="https://instagram.com/feature.fm/">Instagram</a></li>
+                            <li><a target="blank" href="https://open.spotify.com/user/feature.fm">Spotify</a></li>
+                            <li><a target="blank" href="http://8tracks.com/featurefm">8tracks</a></li>
+                            <li><a target="blank" href="https://www.youtube.com/channel/UCY1B_SZrt8sWNScujMCoNWw">Youtube</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                      <img src="http://www.feature.fm/blog/assets/images/feature_fm_no_text_logo.png" width="40px"/>
+                      <div class="copyright">© 2015 ListnPlay Inc,</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- end footer -->
+        <!-- main document markup end -->
+        <script src="http://www.feature.fm/blog/public/jquery.min.js?v=a4a165a155"></script> <!-- Start of Async HubSpot Analytics Code -->
+  <script type="text/javascript">
+    (function(d,s,i,r) {
+      if (d.getElementById(i)){return;}
+      var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+      n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/517072.js';
+      e.parentNode.insertBefore(n, e);
+    })(document,"script","hs-analytics",300000);
+  </script>
+<!-- End of Async HubSpot Analytics Code -->
+
+
+
+        <a href="#" class="scrollToTop"><i class="fa fa-angle-up"></i></a>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="http://www.feature.fm/blog/assets/js/plugins.js"></script>
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-54381400-2');ga('send','pageview');
+        </script>
+        <!-- Start of Async HubSpot Analytics Code -->
+        <script type="text/javascript">
+          (function(d,s,i,r) {
+            if (d.getElementById(i)){return;}
+            var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+            n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/517072.js';
+            e.parentNode.insertBefore(n, e);
+          })(document,"script","hs-analytics",300000);
+        </script>
+        <!-- End of Async HubSpot Analytics Code -->
+        <script src="http://www.feature.fm/blog/assets/js/plugins.js"></script>
+        <script src="http://www.feature.fm/blog/assets/js/imagesloaded.pkgd.min.js"></script>
+        <script src="http://www.feature.fm/blog/assets/js/masonry.pkgd.min.js"></script>
+        <script src="http://www.feature.fm/blog/assets/js/jquery.inputmask.min.js"></script>
+        <script src="http://www.feature.fm/blog/assets/js/jquery.fitvids.js"></script>
+        <script src="http://www.feature.fm/blog/assets/js/main.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+        <script src="http://www.feature.fm/blog/assets/js/jasny-bootstrap.min.js"></script>
+        <script src="http://www.feature.fm/blog/assets/js/carousel-swipe.js"></script>
+        <script src="http://www.feature.fm/blog/assets/js/countUp.min.js"></script>
+        <script src="//code.highcharts.com/stock/highstock.js"></script>
+        <script src="//code.highcharts.com/modules/exporting.js"></script>
+
+        </div>
+    </body>
 </html>
